@@ -36,9 +36,13 @@
                         <td>{{ $company->address }}</td>
                         <td>{{ $company->created_at }}</td>
                         <td>
-                            <a href="{{ route('company.show',$company->id) }}" class="btn btn-sm btn-info">Detalles</a>
-                            <a href="" class="btn btn-sm btn-warning">Editar</a>
-                            <a href="" class="btn btn-sm btn-danger">Eliminar</a>
+                            <form action="{{ route('company.destroy',$company->id) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <a href="{{ route('company.show',$company->id) }}" class="btn btn-sm btn-info">Detalles</a>
+                                <a href="{{ route('company.edit',$company->id) }}" class="btn btn-sm btn-warning">Editar</a>
+                                <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
+                            </form>
                         </td>
                     </tr>
                     @endforeach

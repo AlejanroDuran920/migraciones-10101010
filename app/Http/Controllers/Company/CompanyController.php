@@ -24,4 +24,16 @@ class CompanyController extends Controller
         $company=Company::find($id);
         return view('company.show',compact('company'));
     }
+    public function edit($id){
+        $company=Company::find($id);
+        return view('company.edit',compact('company'));
+    }
+    public function update(Request $request, $id){
+        $company=Company::find($id)->update($request->all());
+        return redirect()->route('company.index');
+    }
+    public function destroy($id){
+       $company=Company::find($id)->delete();
+       return redirect()->route('company.index');
+    }
 }
